@@ -1,3 +1,4 @@
+import { Link } from "@adonisjs/inertia/react"
 import {
     ArrowLeftIcon,
     ArrowRightIcon,
@@ -5,10 +6,10 @@ import {
     IconContext,
     TwitchLogoIcon,
 } from "@phosphor-icons/react"
-import { Button, Carousel, Surface } from "~/components"
+import { Button, Carousel, ImageSlide, Surface } from "~/components"
 
 export default function Home() {
-    const showcaseImgs: { src: string; alt: string }[] = [
+    const showcaseImgs: ImageSlide[] = [
         {
             src: "https://daycare-cdn.qilin.cafe/static/images/home/showcase-myko.webp",
             alt: "Myko, my Qilin/Pixiu OC",
@@ -56,10 +57,10 @@ export default function Home() {
                     </p>
                     <div className="flex gap-4">
                         <Button.Root asChild>
-                            <a href="/form">Commission Form</a>
+                            <Link route="static.form">Commission Form</Link>
                         </Button.Root>
                         <Button.Root asChild>
-                            <a href="/tos">Terms of Service</a>
+                            <Link route="static.tos">Terms of Service</Link>
                         </Button.Root>
                     </div>
                 </Surface>
@@ -78,8 +79,8 @@ export default function Home() {
                                     <img
                                         src={img.src}
                                         alt={img.alt}
-                                        width={4096}
-                                        height={4096}
+                                        width={img.width ?? 4096}
+                                        height={img.height ?? 4096}
                                     />
                                     <span className="absolute bottom-4 left-[50%] translate-x-[-50%] bg-white px-1 text-sm whitespace-nowrap select-none">
                                         {img.alt}

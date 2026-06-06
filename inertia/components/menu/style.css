@@ -64,6 +64,7 @@
         border-radius: var(--radius-lg);
         cursor: pointer;
         padding: var(--padding-block) var(--padding-inline);
+        font-weight: var(--font-weight-medium);
 
         &[data-highlighted] {
             background: var(--color-primary);

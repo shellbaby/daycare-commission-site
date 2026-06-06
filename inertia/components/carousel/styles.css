@@ -2,7 +2,6 @@
     &[data-part="root"] {
         position: relative;
         width: 100%;
-        max-width: 32rem;
         display: flex;
         flex-direction: column;
         gap: calc(var(--spacing) * 4);

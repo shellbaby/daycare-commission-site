@@ -1,5 +1,5 @@
 import { CaretDownIcon } from "@phosphor-icons/react"
-import { AnchorHTMLAttributes, HTMLAttributes } from "react"
+import { HTMLAttributes } from "react"
 import { Menu } from "../menu/menu"
 import style from "./styles.module.css"
 
@@ -14,11 +14,9 @@ const Root = (props: RootProps) => {
     )
 }
 
-type ItemProps = AnchorHTMLAttributes<HTMLAnchorElement>
-const Item = (props: ItemProps) => (
-    <li className={style.Item}>
-        <a {...props} />
-    </li>
+type ItemProps = React.PropsWithChildren
+const Item = ({ children }: ItemProps) => (
+    <li className={style.Item}>{children}</li>
 )
 
 type ItemListProps = ItemProps & { label: string }
@@ -38,21 +36,7 @@ const NavbarMenu = (props: ItemListProps) => (
     </Menu.Root>
 )
 
-type NavbarMenuItemProps = Menu.ItemProps & {
-    href?: string
-    target?: string
-}
-const MenuItem = ({
-    href,
-    target,
-    children,
-    ...props
-}: NavbarMenuItemProps) => (
-    <Menu.Item {...props} asChild className={style.Item}>
-        <a href={href} target={target}>
-            {children}
-        </a>
-    </Menu.Item>
-)
+type NavbarMenuItemProps = Menu.ItemProps
+const MenuItem = (props: NavbarMenuItemProps) => <Menu.Item {...props} />
 
 export const Navbar = { Root, Item, Menu: NavbarMenu, MenuItem }
