@@ -1,0 +1,8 @@
+.Root {
+    --padding-block: calc(var(--spacing) * 9);
+    --padding-inline: calc(var(--spacing) * 9);
+
+    background: var(--color-surface);
+    border-radius: var(--radius-default);
+    padding: var(--padding-block) var(--padding-inline);
+}

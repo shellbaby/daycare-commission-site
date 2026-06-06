@@ -1,0 +1,80 @@
+[data-scope="menu"] {
+    --padding-inline: calc(var(--spacing) * 4);
+    --padding-block: calc(var(--spacing) * 2);
+
+    &[data-part="trigger"] {
+        display: inline-flex;
+        gap: calc(var(--spacing) * 1);
+        align-items: center;
+        justify-content: center;
+        padding: var(--padding-block) var(--padding-inline);
+        user-select: none;
+        white-space: nowrap;
+        cursor: pointer;
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+
+    &[data-part="content"] {
+        --arrow-size: 12px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: calc(var(--spacing) * 1);
+        min-width: max(var(--reference-width), 12rem);
+        max-height: min(var(--available-height, 20rem), 20rem);
+        background: var(--color-surface);
+        border-radius: var(--radius-default);
+        z-index: calc(var(--z-index-popover) + var(--layer-index, 0));
+        outline: none;
+        transform-origin: var(--transform-origin);
+        box-shadow: var(--shadow-popover);
+        border: 1px solid var(--color-black-muted);
+
+        &[data-state="open"] {
+            animation: fly-down-fade-in 0.2s ease-out;
+        }
+
+        &[data-state="closed"] {
+            animation: fly-down-fade-out 0.1s ease-in;
+        }
+    }
+
+    &[data-part="arrow"] {
+        --arrow-background: var(--color-surface);
+        --arrow-shadow-color: var(--color-black-muted);
+        z-index: -1;
+    }
+
+    &[data-part="arrow-tip"] {
+        border-top: 1px solid var(--color-black-muted);
+        border-left: 1px solid var(--color-black-muted);
+        border-bottom: 1px solid var(--color-surface);
+        border-right: 1px solid var(--color-surface);
+    }
+
+    &[data-part="item"] {
+        display: flex;
+        align-items: center;
+        user-select: none;
+        outline: none;
+        text-decoration: none;
+        border-radius: var(--radius-lg);
+        cursor: pointer;
+        padding: var(--padding-block) var(--padding-inline);
+
+        &[data-highlighted] {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+    }
+
+    &[data-part="separator"] {
+        height: 1px;
+        margin-block: calc(var(--spacing) * 1);
+        border: 0;
+        background: var(--color-black-muted);
+    }
+}

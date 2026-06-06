@@ -1,0 +1,94 @@
+[data-scope="carousel"] {
+    &[data-part="root"] {
+        position: relative;
+        width: 100%;
+        max-width: 32rem;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--spacing) * 4);
+
+        &[data-blur] {
+            --blur: 1;
+        }
+    }
+
+    &[data-part="item-group"] {
+        height: 100%;
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        border-radius: var(--radius-default);
+        scrollbar-width: none;
+    }
+
+    &[data-part="item"] {
+        flex: 0 0 100%;
+        min-width: 0;
+        position: relative;
+        filter: blur(calc(var(--blur) * 16px));
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-default);
+        }
+    }
+
+    &[data-part="control"] {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: calc(var(--spacing) * 2);
+    }
+
+    &[data-part="prev-trigger"],
+    &[data-part="next-trigger"] {
+        --trigger-size: calc(var(--spacing) * 10);
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--trigger-size);
+        height: var(--trigger-size);
+        border-radius: var(--radius-default);
+        user-select: none;
+        white-space: nowrap;
+        border: 1px solid var(--color-black-muted);
+        cursor: pointer;
+
+        &:hover:not(:disabled, [data-disabled]) {
+            background: var(--color-primary);
+            color: var(--color-white);
+            border-color: var(--color-primary);
+        }
+
+        &:is(:disabled, [data-disabled]) {
+            color: var(--color-black-muted);
+            cursor: not-allowed;
+        }
+    }
+
+    &[data-part="indicator-group"] {
+        display: flex;
+        justify-content: center;
+        gap: calc(var(--spacing) * 2);
+    }
+
+    &[data-part="indicator"] {
+        --indicator-size: calc(var(--spacing) * 2);
+
+        width: var(--indicator-size);
+        height: var(--indicator-size);
+        border-radius: 9999px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        background: var(--color-black-muted);
+
+        &[data-current] {
+            background: var(--color-primary);
+        }
+    }
+}
