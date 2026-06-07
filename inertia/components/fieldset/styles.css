@@ -1,0 +1,6 @@
+[data-scope="fieldset"] {
+    &[data-part="legend"] {
+        font-weight: var(--font-weight-bold);
+        margin-bottom: calc(var(--spacing) * 1);
+    }
+}

@@ -63,6 +63,8 @@
     --color-border: var(--color-black-muted);
     --color-highlight: oklch(from var(--color-primary) l c h / 0.3);
     --color-success: var(--color-green-500);
+    --color-error: var(--color-red-400);
+    --color-black-subtle: oklch(from var(--color-black) l c h / .4);
 
     --radius-default: var(--radius-xl);
 

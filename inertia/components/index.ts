@@ -1,6 +1,12 @@
 export * from "@ark-ui/react/portal"
 export * from "./button/button"
 export * from "./carousel/carousel"
+export * from "./checkbox/checkbox"
+export * from "./field/field"
+export * from "./fieldset/fieldset"
+export * from "./file-upload/file-upload"
 export * from "./menu/menu"
 export * from "./navigation-bar/navigation-bar"
+export * from "./select/select"
 export * from "./surface/surface"
+
