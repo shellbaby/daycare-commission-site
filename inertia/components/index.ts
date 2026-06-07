@@ -1,4 +1,5 @@
 export * from "@ark-ui/react/portal"
+export * from "./accordion/accordion"
 export * from "./button/button"
 export * from "./carousel/carousel"
 export * from "./checkbox/checkbox"
@@ -9,4 +10,3 @@ export * from "./menu/menu"
 export * from "./navigation-bar/navigation-bar"
 export * from "./select/select"
 export * from "./surface/surface"
-
