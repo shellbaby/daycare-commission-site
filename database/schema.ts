@@ -7,19 +7,50 @@
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
-export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
-  $columns = UserSchema.$columns
+export class CommissionMetaSchema extends BaseModel {
+  static $columns = ['commissionUuid', 'createdAt', 'id', 'paymentStatus', 'status', 'type', 'updatedAt'] as const
+  $columns = CommissionMetaSchema.$columns
+  @column()
+  declare commissionUuid: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare paymentStatus: any
+  @column()
+  declare status: any
+  @column()
+  declare type: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class CommissionSchema extends BaseModel {
+  static $columns = ['commissionNumber', 'commissionUuid', 'contacts', 'createdAt', 'email', 'id', 'idea', 'name', 'notes', 'refSheetPaths', 'refSheetUrls', 'updatedAt'] as const
+  $columns = CommissionSchema.$columns
+  @column()
+  declare commissionNumber: string
+  @column()
+  declare commissionUuid: string
+  @column()
+  declare contacts: any | null
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
   @column()
   declare email: string
-  @column()
-  declare fullName: string | null
   @column({ isPrimary: true })
   declare id: number
-  @column({ serializeAs: null })
-  declare password: string
+  @column()
+  declare idea: string
+  @column()
+  declare name: string
+  @column()
+  declare notes: string | null
+  @column()
+  declare refSheetPaths: any
+  @column()
+  declare refSheetUrls: any
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
+  declare updatedAt: DateTime
 }

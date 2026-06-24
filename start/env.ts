@@ -9,19 +9,41 @@
 |
 */
 
-import { Env } from '@adonisjs/core/env'
+import { Env } from "@adonisjs/core/env"
 
-export default await Env.create(new URL('../', import.meta.url), {
-  // Node
-  NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
-  PORT: Env.schema.number(),
-  HOST: Env.schema.string({ format: 'host' }),
-  LOG_LEVEL: Env.schema.string(),
+export default await Env.create(new URL("../", import.meta.url), {
+    // Node
+    NODE_ENV: Env.schema.enum(["development", "production", "test"] as const),
+    PORT: Env.schema.number(),
+    HOST: Env.schema.string({ format: "host" }),
+    LOG_LEVEL: Env.schema.string(),
 
-  // App
-  APP_KEY: Env.schema.secret(),
-  APP_URL: Env.schema.string({ format: 'url', tld: false }),
+    // App
+    APP_KEY: Env.schema.secret(),
+    APP_URL: Env.schema.string({ format: "url", tld: false }),
 
-  // Session
-  SESSION_DRIVER: Env.schema.enum(['cookie', 'memory', 'database'] as const),
+    // Session
+    SESSION_DRIVER: Env.schema.enum(["cookie", "memory", "database"] as const),
+
+    /*
+|----------------------------------------------------------
+| Variables for configuring database connection
+|----------------------------------------------------------
+*/
+    DB_HOST: Env.schema.string({ format: "host" }),
+    DB_PORT: Env.schema.number(),
+    DB_USER: Env.schema.string(),
+    DB_PASSWORD: Env.schema.string.optional(),
+    DB_DATABASE: Env.schema.string(),
+
+    /*
+  |----------------------------------------------------------
+  | Variables for configuring the drive package
+  |----------------------------------------------------------
+  */
+    DRIVE_DISK: Env.schema.enum(["fs", "r2"] as const),
+    R2_KEY: Env.schema.string(),
+    R2_SECRET: Env.schema.string(),
+    R2_BUCKET: Env.schema.string(),
+    R2_ENDPOINT: Env.schema.string(),
 })

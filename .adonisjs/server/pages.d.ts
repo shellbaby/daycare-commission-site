@@ -12,13 +12,14 @@ type ExtractProps<T> =
 
 declare module '@adonisjs/inertia/types' {
   export interface InertiaPages {
+    'contact': ExtractProps<(typeof import('../../inertia/pages/contact.tsx'))['default']>
     'errors/not_found': ExtractProps<(typeof import('../../inertia/pages/errors/not_found.tsx'))['default']>
     'errors/server_error': ExtractProps<(typeof import('../../inertia/pages/errors/server_error.tsx'))['default']>
+    'form': ExtractProps<(typeof import('../../inertia/pages/form.tsx'))['default']>
+    'gallery': ExtractProps<(typeof import('../../inertia/pages/gallery.tsx'))['default']>
     'home': ExtractProps<(typeof import('../../inertia/pages/home.tsx'))['default']>
     'prices': ExtractProps<(typeof import('../../inertia/pages/prices.tsx'))['default']>
-    'form': ExtractProps<(typeof import('../../inertia/pages/form.tsx'))['default']>
+    'success/commission': ExtractProps<(typeof import('../../inertia/pages/success/commission.tsx'))['default']>
     'tos': ExtractProps<(typeof import('../../inertia/pages/tos.tsx'))['default']>
-    'gallery': ExtractProps<(typeof import('../../inertia/pages/gallery.tsx'))['default']>
-    'contact': ExtractProps<(typeof import('../../inertia/pages/contact.tsx'))['default']>
   }
 }

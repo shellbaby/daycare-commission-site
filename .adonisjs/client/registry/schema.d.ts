@@ -7,6 +7,18 @@ import type { InferInput, SimpleError } from '@vinejs/vine/types'
 export type ParamValue = string | number | bigint | boolean
 
 export interface Registry {
+  'drive.fs.serve': {
+    methods: ["GET","HEAD"]
+    pattern: '/uploads/*'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { '*': ParamValue[] }
+      query: {}
+      response: unknown
+      errorResponse: unknown
+    }
+  }
   'static.home': {
     methods: ["GET","HEAD"]
     pattern: '/'
@@ -43,6 +55,18 @@ export interface Registry {
       errorResponse: unknown
     }
   }
+  'static.commissions.confirm': {
+    methods: ["GET","HEAD"]
+    pattern: '/commission/confirmation'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/commissions_controller').default['confirm']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/commissions_controller').default['confirm']>>>
+    }
+  }
   'static.tos': {
     methods: ["GET","HEAD"]
     pattern: '/commission/tos'
@@ -77,6 +101,30 @@ export interface Registry {
       query: {}
       response: unknown
       errorResponse: unknown
+    }
+  }
+  'static.test': {
+    methods: ["GET","HEAD"]
+    pattern: '/test'
+    types: {
+      body: {}
+      paramsTuple: []
+      params: {}
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/commissions_controller').default['test']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/commissions_controller').default['test']>>>
+    }
+  }
+  'api.commission.store': {
+    methods: ["POST"]
+    pattern: '/api/v1/commissions'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/commission').commssionValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/commission').commssionValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/commissions_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/commissions_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
 }

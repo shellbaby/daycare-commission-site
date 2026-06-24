@@ -4,5 +4,6 @@
  */
 
 export const controllers = {
+  Commissions: () => import('#controllers/commissions_controller'),
   Statics: () => import('#controllers/statics_controller'),
 }

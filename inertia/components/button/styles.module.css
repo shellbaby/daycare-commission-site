@@ -1,5 +1,6 @@
 .Root {
     --color: var(--color-primary);
+    --size: calc(var(--spacing) * 10);
 
     padding: var(--button-padding);
     border-radius: var(--radius-default);
@@ -8,14 +9,24 @@
     align-items: center;
     justify-content: center;
     user-select: none;
+    cursor: pointer;
+    width: 100%;
+    height: var(--size);
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    &[data-is-icon] {
+        width: var(--size);
+        padding: 0 0;
+    }
 
     &[data-variant="fill"] {
         background: var(--color);
         color: var(--color-white);
-        cursor: pointer;
-        width: 100%;
 
-        &:hover {
+        &:not(:disabled):is(:hover, :focus-visible) {
             background: oklch(from var(--color) calc(l + 0.07) c h);
         }
 
@@ -23,6 +34,41 @@
             background: oklch(from var(--color) calc(l - 0.1) c h);
         }
 
-        transition: background 0.1s;
+        &:disabled {
+            background: oklch(from var(--color) l c h / 0.5);
+        }
     }
+
+    &[data-variant="outline"] {
+        color: var(--color);
+        border: 2px solid oklch(from var(--color) l c h / 0.4);
+
+        &:not(:disabled):is(:hover, :focus-visible) {
+            background: var(--color);
+            color: var(--color-white);
+            outline: none;
+        }
+
+        &:disabled {
+            border-color: var(--color-disabled);
+        }
+    }
+
+    &[data-variant="ghost"] {
+        color: var(--color);
+
+        &:not(:disabled):is(:hover, :focus-visible) {
+            background: var(--color);
+            color: var(--color-white);
+            outline: none;
+        }
+
+        &:disabled {
+            background: var(--color-black-muted);
+        }
+    }
+
+    transition:
+        background 0.1s,
+        color 0.1s;
 }
