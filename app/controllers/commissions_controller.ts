@@ -1,3 +1,4 @@
+import CommissionConfirmationNotification from "#mails/commission_confirmation_notification"
 import Commission from "#models/commission"
 import CommissionMeta from "#models/commission_meta"
 import env from "#start/env"
@@ -6,6 +7,7 @@ import { commssionValidator } from "#validators/commission"
 import string from "@adonisjs/core/helpers/string"
 import type { HttpContext } from "@adonisjs/core/http"
 import drive from "@adonisjs/drive/services/main"
+import mail from "@adonisjs/mail/services/main"
 import { faker } from "@faker-js/faker"
 
 export default class CommissionsController {
@@ -51,7 +53,7 @@ export default class CommissionsController {
             fileURLs.push(fileURL)
         }
 
-        await Commission.create({
+        const commission = await Commission.create({
             ...payload,
             contacts: JSON.stringify(contacts),
             commissionUuid,
@@ -77,6 +79,8 @@ export default class CommissionsController {
                 sameSite: "lax",
             }
         )
+
+        await mail.sendLater(new CommissionConfirmationNotification(commission))
 
         session.flash("success", "Commission created!")
         return response.redirect().toRoute("static.commissions.confirm")
@@ -107,12 +111,16 @@ export default class CommissionsController {
             "commission_confirmation"
         )
 
+        if (!confirmationCookie) {
+            response.clearCookie("commission_confirmation")
+            return response.redirect().back()
+        }
+
         const commission = await Commission.query()
             .where("commission_uuid", confirmationCookie.commissionUuid)
             .first()
 
         if (!commission) {
-            response.notFound()
             return response.redirect().back()
         }
 

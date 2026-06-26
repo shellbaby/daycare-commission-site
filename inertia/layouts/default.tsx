@@ -11,7 +11,7 @@ export default function Layout({
 }) {
     return (
         <div className="flex h-full flex-col">
-            <header className="mb-16">
+            <header className="mb-16 shadow-md">
                 <Navbar.Root>
                     <Navbar.Item>
                         <Link route="static.home">Home</Link>

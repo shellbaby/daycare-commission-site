@@ -5,4 +5,5 @@
     background: var(--color-surface);
     border-radius: var(--radius-default);
     padding: var(--padding-block) var(--padding-inline);
+    
 }
