@@ -8,6 +8,7 @@ import string from "@adonisjs/core/helpers/string"
 import type { HttpContext } from "@adonisjs/core/http"
 import drive from "@adonisjs/drive/services/main"
 import mail from "@adonisjs/mail/services/main"
+import redis from "@adonisjs/redis/services/main"
 import { faker } from "@faker-js/faker"
 
 export default class CommissionsController {
@@ -130,14 +131,28 @@ export default class CommissionsController {
     }
 
     async test({ inertia, response }: HttpContext) {
-        const testComm = await Commission.first()
+        // const testComm = await Commission.first()
 
-        if (!testComm) {
-            return response.redirect().back()
+        // if (!testComm) {
+        //     return response.redirect().back()
+        // }
+
+        // return inertia.render("success/commission", {
+        //     commission: CommissionTransformer.transform(testComm),
+        // })
+
+        try {
+            await redis.set(
+                "connection-test-time",
+                new Date().toISOString(),
+                "EX",
+                10
+            )
+            const value = await redis.get("connection-test-time")
+
+            return response.ok({ value })
+        } catch (error) {
+            return response.internalServerError({ error })
         }
-
-        return inertia.render("success/commission", {
-            commission: CommissionTransformer.transform(testComm),
-        })
     }
 }

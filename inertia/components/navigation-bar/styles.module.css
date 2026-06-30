@@ -21,6 +21,7 @@
 
     font-weight: var(--font-weight-semibold) !important;
     cursor: pointer;
+    border-radius: var(--radius-md);
 
     & > * {
         display: inline-block;
@@ -30,7 +31,9 @@
     &:hover {
         background: var(--color, var(--color-primary));
         color: var(--color-white);
-        border-radius: var(--radius-md);
-        transition: background 0.2s;
     }
+
+    transition:
+        background 0.2s,
+        color 0.2s;
 }

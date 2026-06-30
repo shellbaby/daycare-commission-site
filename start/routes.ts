@@ -9,24 +9,7 @@
 
 import { controllers } from "#generated/controllers"
 import router from "@adonisjs/core/services/router"
-
-// router.on('/').renderInertia('home', {}).as('home')
-
-// router
-//   .group(() => {
-//     router.get('signup', [controllers.NewAccount, 'create'])
-//     router.post('signup', [controllers.NewAccount, 'store'])
-
-//     router.get('login', [controllers.Session, 'create'])
-//     router.post('login', [controllers.Session, 'store'])
-//   })
-//   .use(middleware.guest())
-
-// router
-//   .group(() => {
-//     router.post('logout', [controllers.Session, 'destroy'])
-//   })
-//   .use(middleware.auth())
+import { commissionThrottle, throttle } from "./limiter.ts"
 
 router
     .group(() => {
@@ -44,6 +27,7 @@ router
         router.get("/test", [controllers.Commissions, "test"]).as("test")
     })
     .as("static")
+    .use(throttle)
 
 router
     .group(() => {
@@ -53,6 +37,7 @@ router
             })
             .as("commission")
             .prefix("commissions")
+            .use(commissionThrottle)
     })
     .prefix("api/v1")
     .as("api")
