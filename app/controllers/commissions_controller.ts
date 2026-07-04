@@ -4,6 +4,7 @@ import CommissionMeta from "#models/commission_meta"
 import env from "#start/env"
 import CommissionTransformer from "#transformers/commission_transformer"
 import { commssionValidator } from "#validators/commission"
+import cache from "@adonisjs/cache/services/main"
 import string from "@adonisjs/core/helpers/string"
 import type { HttpContext } from "@adonisjs/core/http"
 import drive from "@adonisjs/drive/services/main"
@@ -68,6 +69,12 @@ export default class CommissionsController {
             type: "Simple Drawing",
         })
 
+        await cache.set({
+            key: `commission:uuid:${commissionUuid}`,
+            ttl: "2h",
+            value: commission,
+        })
+
         response.cookie(
             "commission_confirmation",
             {
@@ -113,15 +120,15 @@ export default class CommissionsController {
         )
 
         if (!confirmationCookie) {
-            response.clearCookie("commission_confirmation")
             return response.redirect().back()
         }
 
-        const commission = await Commission.query()
-            .where("commission_uuid", confirmationCookie.commissionUuid)
-            .first()
+        const commission = await cache.get<Commission>({
+            key: `commission:uuid:${confirmationCookie.commissionUuid}`,
+        })
 
         if (!commission) {
+            response.clearCookie("commission_confirmation")
             return response.redirect().back()
         }
 

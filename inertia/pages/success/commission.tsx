@@ -9,6 +9,8 @@ import { InertiaProps } from "~/types"
 
 type PageProps = InertiaProps<{ commission: Data.Commission }>
 export default function Page({ commission }: PageProps) {
+    const refSheetsUrls: string[] = JSON.parse(commission.refSheetUrls)
+
     return (
         <>
             <div className="grid grid-cols-8 gap-x-8">
@@ -39,28 +41,24 @@ export default function Page({ commission }: PageProps) {
                             </p>
 
                             <Carousel.Root
-                                slideCount={
-                                    (commission.refSheetUrls as string[]).length
-                                }
+                                slideCount={refSheetsUrls.length}
                                 loop
                                 spacing="calc(var(--spacing) * 12)"
                                 slidesPerPage={2}
                                 className="mb-8"
                             >
                                 <Carousel.ItemGroup>
-                                    {(commission.refSheetUrls as string[]).map(
-                                        (url, index) => (
-                                            <Carousel.Item
-                                                index={index}
-                                                key={index}
-                                                snapAlign="center"
-                                            >
-                                                <div className="rounded-default border-black-muted border">
-                                                    <img src={url} />
-                                                </div>
-                                            </Carousel.Item>
-                                        )
-                                    )}
+                                    {refSheetsUrls.map((url, index) => (
+                                        <Carousel.Item
+                                            index={index}
+                                            key={index}
+                                            snapAlign="center"
+                                        >
+                                            <div className="rounded-default border-black-muted border">
+                                                <img src={url} />
+                                            </div>
+                                        </Carousel.Item>
+                                    ))}
                                 </Carousel.ItemGroup>
 
                                 <Carousel.Control>

@@ -31,7 +31,8 @@ export default defineConfig({
     () => import("@adonisjs/session/commands"),
     () => import("@adonisjs/inertia/commands"),
     () => import('@adonisjs/mail/commands'),
-    () => import('@adonisjs/session/commands')
+    () => import('@adonisjs/session/commands'),
+    () => import('@adonisjs/cache/commands')
   ],
 
   /*
@@ -64,7 +65,8 @@ export default defineConfig({
     () => import('@adonisjs/drive/drive_provider'),
     () => import('@adonisjs/mail/mail_provider'),
     () => import('@adonisjs/limiter/limiter_provider'),
-    () => import('@adonisjs/redis/redis_provider')
+    () => import('@adonisjs/redis/redis_provider'),
+    () => import('@adonisjs/cache/cache_provider')
   ],
 
   /*

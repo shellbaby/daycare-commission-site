@@ -11,3 +11,4 @@
 /// <reference path="../../config/mail.ts" />
 /// <reference path="../../config/limiter.ts" />
 /// <reference path="../../config/redis.ts" />
+/// <reference path="../../config/cache.ts" />
