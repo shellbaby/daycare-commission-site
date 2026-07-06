@@ -49,9 +49,9 @@ export default class CommissionsController {
             )
 
             const filePath = `${rootPath}/${randomFileName}.${file.extname}`
-            await file.moveToDisk(filePath)
+            await file.moveToDisk(filePath, "r2")
             filePaths.push(filePath)
-            const fileURL = await drive.use().getUrl(filePath)
+            const fileURL = await drive.use("r2").getUrl(filePath)
             fileURLs.push(fileURL)
         }
 

@@ -24,7 +24,11 @@ export default function Page() {
                             <div className="pb-8">
                                 <div className="grid grid-cols-5 gap-x-8">
                                     <div className="col-span-2">
-                                        <div className="bg-primary h-96" />
+                                        <div className="border-border rounded-default grid h-full place-items-center border-4 border-dashed">
+                                            <h1 className="text-border text-center">
+                                                Image Placeholder
+                                            </h1>
+                                        </div>
                                     </div>
                                     <ul className="col-span-3 flex list-inside list-[square] flex-col gap-4">
                                         <li>
@@ -179,7 +183,11 @@ export default function Page() {
                                 </IconContext>
 
                                 <div className="col-span-2">
-                                    <div className="bg-primary h-96" />
+                                    <div className="border-border rounded-default grid h-full place-items-center border-4 border-dashed">
+                                        <h1 className="text-border text-center">
+                                            Image Placeholder
+                                        </h1>
+                                    </div>
                                 </div>
                             </div>
                         </Accordion.ItemContent>
@@ -195,7 +203,11 @@ export default function Page() {
                         <Accordion.ItemContent>
                             <div className="grid grid-cols-5 gap-x-8">
                                 <div className="col-span-2">
-                                    <div className="bg-primary h-96" />
+                                    <div className="border-border rounded-default grid h-full place-items-center border-4 border-dashed">
+                                        <h1 className="text-border text-center">
+                                            Image Placeholder
+                                        </h1>
+                                    </div>
                                 </div>
                                 <ul className="col-span-3 flex list-inside list-[square] flex-col gap-4 pb-8">
                                     <li>

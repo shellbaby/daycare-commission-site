@@ -14,8 +14,10 @@ export default function Page({ commission }: PageProps) {
     return (
         <>
             <div className="grid grid-cols-8 gap-x-8">
-                <div className="rounded-default col-span-3 bg-amber-300">
-                    image
+                <div className="rounded-default border-primary/50 col-span-3 grid place-items-center border-4 border-dashed">
+                    <h1 className="text-primary/50 text-center">
+                        Image Placeholder
+                    </h1>
                 </div>
 
                 <Surface className="col-span-5">

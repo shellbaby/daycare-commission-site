@@ -27,8 +27,8 @@ export default function Home() {
     ]
 
     return (
-        <div className="grid grid-cols-3 gap-8">
-            <div className="col-span-2 flex flex-col gap-8">
+        <div className="grid grid-cols-8 gap-8">
+            <div className="col-span-5 flex flex-col gap-8">
                 <Surface>
                     <h4 className="mb-4">About Me</h4>
                     <p className="mb-4">
@@ -66,7 +66,7 @@ export default function Home() {
                 </Surface>
             </div>
 
-            <div className="flex flex-col gap-8">
+            <div className="col-span-3 flex flex-col gap-8">
                 <Surface>
                     <Carousel.Root
                         slideCount={showcaseImgs.length}
